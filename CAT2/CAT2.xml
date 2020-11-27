@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="CAT2.xsl"?>
+<CHRIST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="CAT2.xsd">
+
+<CS>
+    <STU-NAME>Kriya</STU-NAME>
+    <STU-BRANCH>MCA</STU-BRANCH>
+    <STU-COLLEGE>DSI</STU-COLLEGE>
+</CS>
+
+<CS>
+    <STU-NAME>Sanju</STU-NAME>
+    <STU-BRANCH>MBA</STU-BRANCH>
+    <STU-COLLEGE>BMS</STU-COLLEGE>
+</CS>
+
+<CS>
+    <STU-NAME>Varini</STU-NAME>
+    <STU-BRANCH>MSc</STU-BRANCH>
+    <STU-COLLEGE>RNSIT</STU-COLLEGE>
+</CS>
+
+</CHRIST>

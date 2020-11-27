@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="CHRIST">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="CS" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="STU-NAME" type="xsd:string" />
+            <xsd:element name="STU-BRANCH" type="xsd:string"/>
+            <xsd:element name="STU-COLLEGE" type="xsd:string" />
+          </xsd:sequence> 
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+</xsd:schema> 

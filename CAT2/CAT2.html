@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container 
+        {
+            width: 40%;
+            margin-left: 25%;
+            margin-top: 2%;
+            height: 100%;
+            border: 2px solid black;
+            background-color: lightblue;
+            border-radius: 2em;
+            padding-left: 10%;
+            padding-top: 5%;
+            padding-bottom: 5%; 
+        }
+        .header
+        {
+            color: black; 
+            text-align: center;
+        }
+        .lbl
+        {
+            font-size: 1.2em;
+        }
+        td
+        {
+            width: 50%;
+            padding-top: 2%;
+        }
+        input,textarea
+        {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="header">Gateways 2020</h1>
+    <h2 class="header">"TECHOVID" on Dec 12 and 13, 2020</h2>
+    <h3 class="header">Registration form</h3>
+    <div class="container">
+        <form>
+            <table>
+                <tr>
+                    <td><span class="lbl">Name</span></td>
+                    <td><input type="text" id="name" placeholder="Name"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Email</span></td>
+                    <td><input type="email" id="email" placeholder="Eg: abc@example.com"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Username</span></td>
+                    <td><input type="text" id="username" placeholder="Username"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Password</span></td>
+                    <td><input type="password" id="pwd" placeholder="Password"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Branch</span></td>
+                    <td><input type="text" id="branch" placeholder="Branch"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">College/University Name</span></td>
+                    <td><input type="text" id="clgname" placeholder="College/University Name"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">State</span></td>
+                    <td><input type="text" id="state" placeholder="State"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Address</span></td>
+                    <td><textarea id="address" placeholder="Address"></textarea></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Age</span></td>
+                    <td><input type="text" id="age" placeholder="Age"/></td>
+                </tr>
+                <tr>
+                    <td><span class="lbl">Phone No.</span></td>
+                    <td><input type="phone" id="phone" placeholder="Phone No."/></td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2"><a href="CAT2.html"><button onclick="validate(); Setcookie();">Submit</button></a></td>    
+                </tr>
+                <tr>
+                    <td colspan="2"><button onclick="loadXML()">Details</button></td>    
+                </tr>
+            </table>
+        </form>
+    </div>
+        <script>
+
+            function validate()
+            {
+                var mailformat = /^[a-zA-Z0-9+_.-]+@christ.in$/;
+                var phoneformat=/^[1-9][0-9]{9}/;
+                var usernameformat=/^[A-Z]/;
+                var pwdformat=/^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{8,15}$/  ;
+    
+                if(!(document.getElementById("age").value>0) || document.getElementById("age").value == "")
+                {
+                    alert("Age should be a positive number.");
+                }
+                else if(document.getElementById("name").value%10 == 0 || document.getElementById("name").value == "")
+                {
+                    alert("Enter Name Correctly.");
+                }
+                else if(document.getElementById("address").value == "")
+                {
+                    alert("Please enter your Address.");
+                }
+                else if(!usernameformat.test(document.getElementById("username").value))
+                {
+                    alert("Username format incorrect.");
+                }   
+                else if(!mailformat.test(document.getElementById("email").value))
+                {
+                    alert("Email ID format incorrect.");
+                }   
+                else if(!pwdformat.test(document.getElementById("pwd").value))
+                {
+                    alert("Enter Valid Password.");
+                }   
+                else if(!phoneformat.test(document.getElementById("phone").value))
+                {
+                    alert("Enter Valid Phone No.");
+                }
+                else
+                {
+                    alert("All details are Ok.");
+                }
+            }
+        
+            function loadXML()
+            {
+                var xhttp=new XMLHttpRequest();
+                xhttp.onreadystatechange=function()
+                {
+                    if(this.readyState==4&&this.status==200)
+                    {
+                        myFunction(this);
+                    }
+                };
+                xhttp.open("GET","CAT2.xml",false);
+                xhttp.send(); 
+            }
+            function myFunction(xml)
+            {
+                var i;
+                var xmlDoc=xml.responseXML;
+                var t="<tr>"
+                +"<th>STU-NAME</th>"
+                +"<th>STU-COLLEGE</th>"
+                +"</tr>";
+                var x=xmlDoc.getElementsByTagName("CS");
+                for(i=0;i<x.length;i++)
+                {
+                    t +="<tr><td>" +
+                    x[i].getElementsByTagName("STU-NAME")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("STU-COLLEGE")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                }
+                document.getElementById("demo").innerHTML=t;
+            }
+    
+            function Setcookie()
+                {
+                    document.cookie="username="+document.getElementById("username").value+";expires=Sun, 29 Nov 2020 23:50:00 UTC";;
+                    document.cookie="phone="+document.getElementById("phone").value+";expires=Sun, 29 Nov 2020 23:50:00 UTC";;
+                    window.location.href("CAT2.html");
+                    alert("Registration Successful");
+                }
+            window.onload=function()
+            {
+                if(document.cookie.length!=0)
+                {
+                    var Allcookies,Temp;
+                    Allcookies=document.cookie.split(";");   
+                    for(var i=0;i<Allcookies.length;i++)
+                    {
+                        Temp=Allcookies[i].split("=");
+                        if(Temp[0]=="username")
+                        {
+                            document.getElementById("username").value=Temp[1];
+                        }
+                        if(Temp[0]=="phone")
+                        {
+                            document.getElementById("phone").value=Temp[1];
+                        }
+                    }
+                }
+            }
+        </script>
+</body>
+</html>
